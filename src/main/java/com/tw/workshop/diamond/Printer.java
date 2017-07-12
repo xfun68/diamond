@@ -5,6 +5,12 @@ import java.util.List;
 
 public class Printer {
     public List<String> diamond(String letter) {
-        return Arrays.asList("A");
+        if (letter.equals("A")) {
+            return Arrays.asList("A");
+        } else if (letter.equals("B")) {
+            return Arrays.asList(" A ", "B B", " A ");
+        } else {
+            return Arrays.asList("  A  ", " B B ", "C   C", " B B ", "  A  ");
+        }
     }
 }

@@ -15,4 +15,24 @@ public class DiamondTest {
         Assert.assertEquals(Arrays.asList("A"), printer.diamond("A"));
     }
 
+    @Test
+    public void print_diamond_for_B() throws Exception {
+        Assert.assertEquals(Arrays.asList(
+                " A ",
+                "B B",
+                " A "),
+                printer.diamond("B"));
+    }
+
+    @Test
+    public void print_diamond_for_C() throws Exception {
+        Assert.assertEquals(Arrays.asList(
+                "  A  ",
+                " B B ",
+                "C   C",
+                " B B ",
+                "  A  "),
+                printer.diamond("C"));
+    }
+
 }
