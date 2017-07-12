@@ -1,7 +1,7 @@
 package com.tw.workshop.diamond;
 
 import java.util.ArrayList;
-import java.util.Collections;
+import java.util.Arrays;
 import java.util.List;
 
 public class Printer {
@@ -17,22 +17,12 @@ public class Printer {
     }
 
     private List<String> getSeq(String letter) {
-        List<String> firstHalf = new ArrayList<>();
-        for (char c = 'A'; c <= letter.charAt(0); c++) {
-            firstHalf.add(String.valueOf(c));
+        StringBuffer stringBuffer = new StringBuffer();
+        for (char c = 'A'; c < letter.charAt(0); c++) {
+            stringBuffer.append(c);
         }
-
-        if (firstHalf.size() <= 1) {
-            return firstHalf;
-        }
-
-        List<String> secondHalf = new ArrayList<>(firstHalf.subList(0, firstHalf.size() - 1));
-        Collections.reverse(secondHalf);
-
-        List<String> result = new ArrayList<>();
-        result.addAll(firstHalf);
-        result.addAll(secondHalf);
-        return result;
+        String result = stringBuffer.toString() + letter + stringBuffer.reverse().toString();
+        return Arrays.asList(result.split(""));
     }
 
     private String getLine(String letter, String lineLetter) {
