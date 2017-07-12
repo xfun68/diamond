@@ -5,6 +5,9 @@ import java.util.Collections;
 import java.util.List;
 
 public class Printer {
+
+    private static final String LETTER_A = "A";
+
     public List<String> diamond(String letter) {
         ArrayList<String> lines = new ArrayList<>();
         for (String lineLetter : getSeq(letter)) {
@@ -33,22 +36,21 @@ public class Printer {
     }
 
     private String getLine(String letter, String lineLetter) {
-        if (letter.equals("A")) {
-            return "A";
-        } else if (letter.equals("B")) {
-            if (lineLetter.equals("A")) {
-                return " A ";
-            } else {
-                return "B B";
-            }
-        } else {
-            if (lineLetter.equals("A")) {
-                return "  A  ";
-            } else if (lineLetter.equals("B")) {
-                return " B B ";
-            } else {
-                return "C   C";
-            }
+        StringBuffer result = spaces(letter);
+        result.setCharAt(diff(letter, lineLetter), lineLetter.charAt(0));
+        result.setCharAt(result.toString().length() - 1 - (diff(letter, lineLetter)), lineLetter.charAt(0));
+        return result.toString();
+    }
+
+    private int diff(String left, String right) {
+        return left.charAt(0) - right.charAt(0);
+    }
+
+    private StringBuffer spaces(String letter) {
+        StringBuffer stringBuffer = new StringBuffer();
+        for (int i = 0; i < diff(letter, LETTER_A) * 2 + 1; i++) {
+            stringBuffer.append(' ');
         }
+        return stringBuffer;
     }
 }
