@@ -35,4 +35,15 @@ public class DiamondTest {
                 printer.diamond("C"));
     }
 
+    @Test
+    public void print_super_diamond_for_C() throws Exception {
+        Assert.assertEquals(Arrays.asList(
+                "  A  ",
+                " B*B ",
+                "C***C",
+                " B*B ",
+                "  A  "),
+                printer.superDiamond("C"));
+    }
+
 }

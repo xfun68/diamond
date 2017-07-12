@@ -9,26 +9,41 @@ public class Printer {
     private static final String LETTER_A = "A";
 
     public List<String> diamond(String letter) {
+        return generate(letter, " ");
+    }
+
+    public List<String> superDiamond(String letter) {
+        return generate(letter, "*");
+    }
+
+    private List<String> generate(String letter, String decorator) {
         ArrayList<String> lines = new ArrayList<>();
         for (String lineLetter : getSeq(letter)) {
-            lines.add(getLine(letter, lineLetter));
+            lines.add(getLine(letter, lineLetter, decorator));
         }
         return lines;
     }
 
     private List<String> getSeq(String letter) {
-        StringBuffer stringBuffer = new StringBuffer();
+        StringBuilder sb = new StringBuilder();
         for (char c = 'A'; c < letter.charAt(0); c++) {
-            stringBuffer.append(c);
+            sb.append(c);
         }
-        String result = stringBuffer.toString() + letter + stringBuffer.reverse().toString();
+        String result = sb.toString() + letter + sb.reverse().toString();
         return Arrays.asList(result.split(""));
     }
 
-    private String getLine(String letter, String lineLetter) {
+    private String getLine(String letter, String lineLetter, String decorator) {
         StringBuffer result = spaces(letter);
-        result.setCharAt(diff(letter, lineLetter), lineLetter.charAt(0));
-        result.setCharAt(result.toString().length() - 1 - (diff(letter, lineLetter)), lineLetter.charAt(0));
+        int firstPos = diff(letter, lineLetter);
+        int secondPos = result.toString().length() - 1 - (diff(letter, lineLetter));
+
+        result.setCharAt(firstPos, lineLetter.charAt(0));
+        for (int i = firstPos + 1; i < secondPos; i++) {
+            result.setCharAt(i, decorator.charAt(0));
+        }
+        result.setCharAt(secondPos, lineLetter.charAt(0));
+
         return result.toString();
     }
 
